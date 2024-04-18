@@ -6,6 +6,7 @@ const Home = ()=>{
     const[msg,setMsg] = useState('')    
     const [receiver,setReceiver] = useState('')
     const [allMsgs, setAllMsgs] = useState([])
+    const[receivedMsgs ,setReceivedMsgs] = useState([])
 
     useEffect(()=>{
        const fetchUsers = async() => {
@@ -56,8 +57,12 @@ const handleMsg = async()=>{
         sender: username,
         receiver: receiver
     })
-    // setAllMsgs(msgData.data)
     setAllMsgs(msgData.data.data)
+    const ReceiverMsgData = await axios.post('http://localhost:3000/getMsgs',{
+        sender: receiver,
+        receiver: username
+    })
+    setReceivedMsgs(ReceiverMsgData.data.data)
    }} className="cursor-pointer">{item.username}</p>
             </div>
              )
@@ -65,12 +70,21 @@ const handleMsg = async()=>{
            }
            <div className="ml-[200px] flex-col bg-slate-300 w-[600px] h-[300px] flex justify-evenly items-center">
                  <p>{receiver}</p>
-                 <div className="w-[100%] h-[200px] bg-white">
-                       <div>
+                 <div className="w-[100%] h-[200px] bg-white flex">
+                 <div className="w-[50%]">
+                           {
+                            receivedMsgs.map((item)=>{
+                                return<>
+                                    <p>{item.userMsg},{item.time}</p>
+                                      </>
+                            })
+                           }
+                       </div>
+                       <div className="w-[50%] ">
                            {
                               allMsgs.map((item)=>{
                                 return <>
-                                   <p>{item.userMsg}</p>
+                                   <p>{item.userMsg},{item.time}</p>
                                 </>
                               })
                            }
