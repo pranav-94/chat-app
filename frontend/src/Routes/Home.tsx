@@ -38,10 +38,10 @@ const handleMsg = async()=>{
         alert('please select receiver first')
         return
     }
-    // if(receiver === ''){
-    //     alert('please select receiver first')
-    //     return
-    // }
+    if(msg === ''){
+        alert(`message can't be empty`)
+        return
+    }
 
       await axios.post('http://localhost:3000/messages',{
       sender: username,
