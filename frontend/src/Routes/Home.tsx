@@ -34,6 +34,15 @@ const dateSTR = (dateNum+'/'+month+' '+hrs+':'+mins)
 console.log(dateSTR)
 
 const handleMsg = async()=>{
+    if(receiver === ''){
+        alert('please select receiver first')
+        return
+    }
+    // if(receiver === ''){
+    //     alert('please select receiver first')
+    //     return
+    // }
+
       await axios.post('http://localhost:3000/messages',{
       sender: username,
       receiver: receiver,
