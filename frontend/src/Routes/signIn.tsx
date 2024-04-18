@@ -25,7 +25,7 @@ const HandleSign = ()=>{
                password: password
            })
            if(data.data.msg){
-            localStorage.setItem('username',username)
+            localStorage.setItem('username',)
             navigate('/Home')
            }
         }
