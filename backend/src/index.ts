@@ -54,8 +54,8 @@ app.post('/getMsgs',async(req:Request,res:Response)=>{
 app.post('/signIn',async(req:Request,res:Response)=>{
    const signInData = req.body 
 
-   const user = {name:signInData.username}
-   const jwt_auth = jwt
+   // const user = {name:signInData.username}
+   // const jwt_auth = jwt
 
    const signInStatus = await db.userModel.find({
       username: signInData.username,
