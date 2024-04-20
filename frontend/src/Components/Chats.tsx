@@ -18,9 +18,29 @@ const Chats = ()=>{
         }
         fetchUsers()
      },[])
+     
+     useEffect(()=>{
+        if(receiver){
+        handleMessagesOnBoard()
+        }
+     },[receiver])
+
+     const handleMessagesOnBoard = async()=>{
+          const msgData = await axios.post('http://localhost:3000/getMsgs',{
+                              sender: username,
+                              receiver: receiver
+                          })
+                          setAllMsgs(msgData.data.data)
+        const ReceiverMsgData = await axios.post('http://localhost:3000/getMsgs',{
+                            sender: receiver,
+                            receiver: username
+                        })
+                        setReceivedMsgs(ReceiverMsgData.data.data)
+     }
+
      const filteredArr = allUsers.filter(user=> !(user.username === username))
 
-     const date = new Date
+     const date = new Date()
      const hrs = date.getHours()
      const mins = date.getMinutes()
      const dateNum = date.getDate()
@@ -53,18 +73,19 @@ const Chats = ()=>{
         {
             filteredArr.map((item)=>{
                 return <div className="md:flex md:justify-evenly md:items-center">
-                    <p className="cursor-pointer" onClick={async()=>{
+                    <p className="cursor-pointer" onClick={()=>{
                           setReceiver(item.username)
-                          const msgData = await axios.post('http://localhost:3000/getMsgs',{
-                              sender: username,
-                              receiver: receiver
-                          })
-                          setAllMsgs(msgData.data.data)
-                          const ReceiverMsgData = await axios.post('http://localhost:3000/getMsgs',{
-                              sender: receiver,
-                              receiver: username
-                          })
-                          setReceivedMsgs(ReceiverMsgData.data.data)
+                        //   const msgData = await axios.post('http://localhost:3000/getMsgs',{
+                        //       sender: username,
+                        //       receiver: receiver
+                        //   })
+                        //   setAllMsgs(msgData.data.data)
+                        //   const ReceiverMsgData = await axios.post('http://localhost:3000/getMsgs',{
+                        //       sender: receiver,
+                        //       receiver: username
+                        //   })
+                        //   setReceivedMsgs(ReceiverMsgData.data.data)
+
                     }}>{item.username}</p>
                 </div>
             })
@@ -103,3 +124,4 @@ const Chats = ()=>{
 }
 
 export default Chats
+
