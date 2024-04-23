@@ -6,6 +6,7 @@ const Chats = ()=>{
     const [receiver,setReceiver] = useState('')
     const [msg,setMsg] = useState('')   
     const [allMsgs, setAllMsgs] = useState([])
+    const [sender,setSender] = useState('')
     const username = localStorage.getItem('username')
 
     useEffect(()=>{
@@ -93,14 +94,28 @@ const Chats = ()=>{
                  <p>{receiver}</p>
             </div>
                  <div className="md:h-[80%] md:flex ">
-                 <div className="md:w-[100%] bg-slate-100 overflow-scroll">
-                           {
-                             allMsgs.map((user)=>{
-                                return<div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-blue-100 rounded-md flex flex-col justify-evenly">
+                 <div className="md:w-[100%] bg-slate-100 overflow-scroll pt-[5px] pb-[20px]">
+                 {
+                             allMsgs.map((user)=>(
+                               (user.sender === username)? (
+                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-teal-100 rounded-md flex flex-col justify-evenly">
                                   <p className="text-md">{user.userMsg}</p>
                                     <p className="text-xs">{user.time}</p>
                                 </div>
-                             })
+                              )
+                              
+                              :
+                              (
+                                <div className=" flex justify-end">
+                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-blue-100 rounded-md flex flex-col justify-evenly">
+                                  <p className="text-md">{user.userMsg}</p>
+                                    <p className="text-xs">{user.time}</p>
+                                </div>
+                                </div>
+                              )
+                              
+                                
+                             ))
                            }
                        </div>
                  </div>
