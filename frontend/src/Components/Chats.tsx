@@ -89,16 +89,17 @@ const Chats = ()=>{
         }
         </div>
           <div className=" md:w-[100%] md:h-[100vh]">
-            <div className="md:h-[10%] md:flex md:justify-center md:items-center">
+            <div className="md:h-[10%] md:flex shadow-lg md:justify-center md:items-center">
                  <p>{receiver}</p>
             </div>
                  <div className="md:h-[80%] md:flex ">
-                 <div className="md:w-[100%] bg-slate-100">
+                 <div className="md:w-[100%] bg-slate-100 overflow-scroll">
                            {
                              allMsgs.map((user)=>{
-                                return<>
-                                  <p>{user.userMsg}</p>
-                                </>
+                                return<div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-blue-100 rounded-md flex flex-col justify-evenly">
+                                  <p className="text-md">{user.userMsg}</p>
+                                    <p className="text-xs">{user.time}</p>
+                                </div>
                              })
                            }
                        </div>
