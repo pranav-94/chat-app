@@ -19,9 +19,7 @@ const Chats = ()=>{
      
      useEffect(()=>{
         if(receiver){
-            setInterval(()=>{
                 handleMessagesOnBoard()
-            },10000)
         }
      },[receiver])
 
@@ -67,8 +65,8 @@ const Chats = ()=>{
 
     return(
         <>
-    <div className=" flex">
-        <div className="md:w-[25%] md:h-auto md:flex md:flex-col md:items-center md:justify-evenly">
+    <div className="flex">
+        <div className="md:w-[25%]  md:h-auto md:flex md:flex-col md:items-center md:justify-start">
         {
             filteredArr.map((item)=>{
                 return <div className="md:flex md:justify-evenly md:items-center">
@@ -95,7 +93,7 @@ const Chats = ()=>{
                  <p>{receiver}</p>
             </div>
                  <div className="md:h-[80%] md:flex ">
-                 <div className="md:w-[100%]">
+                 <div className="md:w-[100%] bg-slate-100">
                            {
                              allMsgs.map((user)=>{
                                 return<>
