@@ -15,7 +15,8 @@ const messageSchema = new mongoose_1.default.Schema({
     sender: String,
     receiver: String,
     userMsg: String,
-    time: String
+    time: String,
+    timeStamp: Number
 });
 const userModel = mongoose_1.default.model('userData', userSchema);
 const messageModel = mongoose_1.default.model('messageData', messageSchema);

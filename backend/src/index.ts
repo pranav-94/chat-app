@@ -31,23 +31,37 @@ app.get('/allUsers',async(req:Request,res:Response)=>{
 
 app.post('/messages',async(req:Request,res:Response)=>{
     console.log(req.body)
+   
      await db.messageModel.create({
         sender: req.body.sender,
         receiver: req.body.receiver,
         userMsg: req.body.userMsg,
-        time: req.body.time
+        time: req.body.time,
+        timeStamp: req.body.timeStamp
      })
 })
 
 app.post('/getMsgs',async(req:Request,res:Response)=>{
-   const userMsgs = await db.messageModel.find({
+
+
+   const senderMsgs = await db.messageModel.find({
          sender: req.body.sender ,
          receiver: req.body.receiver 
       })
 
+   const receiverMsgs = await db.messageModel.find({
+         sender: req.body.receiver ,
+         receiver: req.body.sender 
+      })
+
+   const allMsgs = [...senderMsgs,...receiverMsgs]
+   allMsgs.sort((a, b) => {
+      return a.timeStamp - b.timeStamp
+});
+
       res.json({
          msg: 'success',
-         data: userMsgs
+         data: allMsgs
       })
 })
 

@@ -12,7 +12,8 @@ const messageSchema = new mongoose.Schema({
     sender: String,
     receiver: String,
     userMsg: String,
-    time: String
+    time: String,
+    timeStamp: Number
 })
 
 const userModel = mongoose.model('userData',userSchema)

@@ -6,14 +6,12 @@ const Chats = ()=>{
     const [receiver,setReceiver] = useState('')
     const [msg,setMsg] = useState('')   
     const [allMsgs, setAllMsgs] = useState([])
-    const [receivedMsgs ,setReceivedMsgs] = useState([])
     const username = localStorage.getItem('username')
 
     useEffect(()=>{
         const fetchUsers = async() => {
           const allData = await axios.get('http://localhost:3000/allUsers')
           setAllusers(allData.data.data)
-          console.log(allData.data.data)
  
         }
         fetchUsers()
@@ -21,7 +19,9 @@ const Chats = ()=>{
      
      useEffect(()=>{
         if(receiver){
-        handleMessagesOnBoard()
+            setInterval(()=>{
+                handleMessagesOnBoard()
+            },10000)
         }
      },[receiver])
 
@@ -31,11 +31,8 @@ const Chats = ()=>{
                               receiver: receiver
                           })
                           setAllMsgs(msgData.data.data)
-        const ReceiverMsgData = await axios.post('http://localhost:3000/getMsgs',{
-                            sender: receiver,
-                            receiver: username
-                        })
-                        setReceivedMsgs(ReceiverMsgData.data.data)
+                        //   console.log(msgData.data)
+                          console.log(allMsgs)
      }
 
      const filteredArr = allUsers.filter(user=> !(user.username === username))
@@ -45,6 +42,7 @@ const Chats = ()=>{
      const mins = date.getMinutes()
      const dateNum = date.getDate()
      const month = (date.getMonth())+1
+     const timeStamp = date.getTime()
      const dateSTR = (dateNum+'/'+month+' '+hrs+':'+mins)
      console.log(dateSTR)
 
@@ -62,7 +60,8 @@ const Chats = ()=>{
           sender: username,
           receiver: receiver,
           userMsg: msg,
-          time: dateSTR
+          time: dateSTR,
+          timeStamp: timeStamp
         })
     }
 
@@ -98,18 +97,11 @@ const Chats = ()=>{
                  <div className="md:h-[80%] md:flex ">
                  <div className="md:w-[100%]">
                            {
-                            receivedMsgs.map((item)=>{
-                                return<div>
-                                    <p className="md:h-[30px] md:w-[100%]  mt-2 mb-2">{item.userMsg},{item.time}</p>
-                                      </div>
-                            })
-                           }
-                           {
-                              allMsgs.map((item)=>{
-                                return <div className="md:h-[30px] md:w-[100%] flex justify-end  mt-2 mb-2">
-                                   <p>{item.userMsg},{item.time}</p>
-                                </div>
-                              })
+                             allMsgs.map((user)=>{
+                                return<>
+                                  <p>{user.userMsg}</p>
+                                </>
+                             })
                            }
                        </div>
                  </div>

@@ -44,21 +44,32 @@ app.post('/messages', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         sender: req.body.sender,
         receiver: req.body.receiver,
         userMsg: req.body.userMsg,
-        time: req.body.time
+        time: req.body.time,
+        timeStamp: req.body.timeStamp
     });
 }));
 app.post('/getMsgs', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userMsgs = yield db_1.default.messageModel.find({
+    const senderMsgs = yield db_1.default.messageModel.find({
         sender: req.body.sender,
         receiver: req.body.receiver
     });
+    const receiverMsgs = yield db_1.default.messageModel.find({
+        sender: req.body.receiver,
+        receiver: req.body.sender
+    });
+    const allMsgs = [...senderMsgs, ...receiverMsgs];
+    allMsgs.sort((a, b) => {
+        return a.timeStamp - b.timeStamp;
+    });
     res.json({
         msg: 'success',
-        data: userMsgs
+        data: allMsgs
     });
 }));
 app.post('/signIn', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const signInData = req.body;
+    // const user = {name:signInData.username}
+    // const jwt_auth = jwt
     const signInStatus = yield db_1.default.userModel.find({
         username: signInData.username,
         password: signInData.password
