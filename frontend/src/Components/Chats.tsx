@@ -98,7 +98,7 @@ const Chats = ()=>{
                  {
                              allMsgs.map((user)=>(
                                (user.sender === username)? (
-                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-teal-100 rounded-md flex flex-col justify-evenly">
+                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-teal-100 shadow-lg rounded-md flex flex-col justify-evenly">
                                   <p className="text-md">{user.userMsg}</p>
                                     <p className="text-xs">{user.time}</p>
                                 </div>
@@ -107,7 +107,7 @@ const Chats = ()=>{
                               :
                               (
                                 <div className=" flex justify-end">
-                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-blue-100 rounded-md flex flex-col justify-evenly">
+                                <div className="size-fit shadow-lg pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-blue-100 rounded-md flex flex-col justify-evenly">
                                   <p className="text-md">{user.userMsg}</p>
                                     <p className="text-xs">{user.time}</p>
                                 </div>
