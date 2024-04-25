@@ -41,7 +41,7 @@ const Chats = ()=>{
      const mins = date.getMinutes()
      const dateNum = date.getDate()
      const month = (date.getMonth())+1
-     const timeStamp = date.getTime()
+     const timeStamp:Number = date.getTime()
      const dateSTR = (dateNum+'/'+month+' '+hrs+':'+mins)
      console.log(dateSTR)
 
@@ -98,7 +98,7 @@ const Chats = ()=>{
                  {
                              allMsgs.map((user)=>(
                                (user.sender === username)? (
-                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-teal-100 shadow-lg rounded-md flex flex-col justify-evenly">
+                                <div className="size-fit pl-5 pr-5 mt-5 mr-5 md:h-[60px] bg-red-100 shadow-lg rounded-md flex flex-col justify-evenly">
                                   <p className="text-md">{user.userMsg}</p>
                                     <p className="text-xs">{user.time}</p>
                                 </div>

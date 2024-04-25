@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
       lastname: String
 })
 
+interface Messages  {
+     timeStamp :number
+}
+
 const messageSchema = new mongoose.Schema({
     sender: String,
     receiver: String,
@@ -17,6 +21,6 @@ const messageSchema = new mongoose.Schema({
 })
 
 const userModel = mongoose.model('userData',userSchema)
-const messageModel = mongoose.model('messageData',messageSchema)
+const messageModel = mongoose.model<Messages>('messageData',messageSchema)
 
 export default {userModel,messageModel}
