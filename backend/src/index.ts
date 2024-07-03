@@ -43,7 +43,6 @@ app.post('/messages',async(req:Request,res:Response)=>{
 
 app.post('/getMsgs',async(req:Request,res:Response)=>{
 
-
    const senderMsgs = await db.messageModel.find({
          sender: req.body.sender ,
          receiver: req.body.receiver 
