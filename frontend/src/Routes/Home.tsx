@@ -14,7 +14,6 @@ const Home = ()=>{
     {
       mode===true?
     <div className="md:w-[100%] flex">
-      <button onClick={handleMode}>Mode</button>
         <div className="md:w-[10%]">
             <NavBar/>
         </div>
