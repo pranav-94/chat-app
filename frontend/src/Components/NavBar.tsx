@@ -5,10 +5,10 @@ const NavBar = ()=>{
     return(
         <div className="md:h-[100vh] bg-gray-700 text-slate-200 md:flex md:flex-col md:justify-between md:items-center">
         <div className="md:mt-[30px] flex flex-col h-[130px] justify-evenly">
-            <Link className="" to='/home'><img src="https://as1.ftcdn.net/v2/jpg/01/98/91/56/1000_F_198915640_AgwO0OXCLmIzJhICxVGM8qhp0aDBFqdF.jpg" className="w-[35px] h-[35px] rounded-full " alt="" /></Link>
-            <Link to='/profile'><img src="https://as1.ftcdn.net/v2/jpg/02/09/95/42/1000_F_209954204_mHCvAQBIXP7C2zRl5Fbs6MEWOEkaX3cA.jpg" className="w-[35px] h-[35px] rounded-full " alt="" /></Link>
+            <Link className="" to='/home'><img src="https://cdn-icons-png.flaticon.com/128/724/724715.png" className="w-[35px] h-[35px] rounded-full " alt="" /></Link>
+            <Link to='/profile'><img src="https://cdn-icons-png.flaticon.com/128/1077/1077012.png" className="w-[35px] h-[35px] rounded-full " alt="" /></Link>
         </div>
-           <p className="md:mb-[30px]">{username}</p>
+           <p className="md:mb-[30px] w-[40px] h-[40px] bg-blue-500 text-white flex justify-center items-center rounded-full">{username?.slice(0,1)}</p>
         </div>
     )
 }

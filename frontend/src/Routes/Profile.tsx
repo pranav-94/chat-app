@@ -5,10 +5,10 @@ const ProfilePage = ()=>{
     return(
         <>
         <div className="md:w-[100%] flex">
-            <div className="md:w-[10%]">
+            <div className="md:w-[5%]">
                 <NavBar/>
             </div>
-          <div className="md:w-[90%] ">
+          <div className="md:w-[95%] ">
             <ProfileComp />
           </div>
         </div>

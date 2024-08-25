@@ -14,10 +14,10 @@ const Home = ()=>{
     {
       mode===true?
     <div className="md:w-[100%] flex">
-        <div className="md:w-[10%]">
+        <div className="md:w-[5%]">
             <NavBar/>
         </div>
-      <div className="md:w-[90%]">
+      <div className="md:w-[95%]">
         <Chats />
       </div>
     </div>

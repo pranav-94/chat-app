@@ -70,7 +70,7 @@ const Chats = ()=>{
   <div className="md:w-[25%] md:h-auto md:flex md:flex-col md:items-center md:justify-start bg-gray-800 border-r-2 border-gray-600 ">
   <div className="bg-gray-800 text-slate-300 w-[100%] h-[55px] flex justify-center items-center">
 
-    <p>Chats</p>
+    <p>Users</p>
   </div>
     {filteredArr.map((item) => {
       return (
