@@ -1,11 +1,13 @@
 import { useEffect,useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const Chats = ()=>{
     const [allUsers,setAllusers] = useState([]) 
     const [receiver,setReceiver] = useState('')
     const [msg,setMsg] = useState('')   
     const [allMsgs, setAllMsgs] = useState([])
+    const navigate = useNavigate()
     const [sender,setSender] = useState('')
     const username = localStorage.getItem('username')
 
@@ -89,7 +91,9 @@ const Chats = ()=>{
   </div>
   <div className="md:w-[100%] md:h-[100vh]">
     <div className="md:h-[10%] md:flex shadow-lg md:justify-center md:items-center bg-gray-700 ">
-      <p className="text-lg text-slate-300">{receiver}</p>
+      <p onClick={()=>{
+        navigate('/profile',{state:{username:receiver}})
+      }} className="text-lg text-slate-300 cursor-pointer">{receiver}</p>
     </div>
     <div className="md:h-[80%] md:flex bg-gray-900">
       <div className="md:w-[100%] bg-gray-800 overflow-scroll pt-[5px] pb-[20px] border-l-2 border-r-2 border-gray-600">
