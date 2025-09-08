@@ -14,7 +14,6 @@ const Chats = ()=>{
     useEffect(()=>{
         const fetchUsers = async() => {
           const allData = await axios.get('http://localhost:3000/allUsers')
-          setAllusers(allData.data.data)
  
         }
         fetchUsers()

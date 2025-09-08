@@ -1,5 +1,6 @@
 import express,{Request,Response} from 'express'
 import jwt from 'jsonwebtoken'
+import * as https from 'https';
 import db from './db'
 import cors from 'cors'
 const app = express()
@@ -86,6 +87,16 @@ app.post('/signIn',async(req:Request,res:Response)=>{
       msg: 'success'
    })
 
+
+})
+
+app.get('/userStatus',(req,res)=>{
+
+   https.get('https://www.google.com', (Response) => {
+        return res.json({msg:'online'})
+    }).on('error', (err: Error) => {
+        return res.json({msg:'offline'})
+   });
 
 })
 
